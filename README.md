@@ -10,3 +10,5 @@ From creating and managing games to facilitating lively discussions and debates,
 But LunaFur isn't just about gaming – it's also about community. With features like clear functions for addresses and a streamlined interface for viewing and managing player data, LunaFur fosters camaraderie and teamwork among server members. Whether you're strategizing with your fellow villagers or plotting with your fellow werewolves, LunaFur provides the perfect platform for building lasting friendships and rivalries alike.
 
 So why wait? Bring LunaFur to your server today and unleash the full potential of your werewolf community. With LunaFur by your side, the moonlit nights will never be the same again.
+
+
