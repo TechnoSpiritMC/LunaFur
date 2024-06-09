@@ -254,7 +254,7 @@ async def lobbys(ctx):
     consoleLog(log.info, f"@{user.name} Executed command /ping.")
 
 
-client.run("MTIzMTQ4Njg5MDc2MzYxNjI5OA.G8lZDy.GbEySMXsVNGdWdCUA7BgpIWevrt_7CVsEmyous")
+client.run("some token haha you thought you could get it as easky as that?")
 
 # ======================================================================================================================
 #                             This file is a part of TechnoSpirit's LunaFur bot. If you want
