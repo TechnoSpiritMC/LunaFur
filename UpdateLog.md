@@ -15,3 +15,15 @@
 - Added docstrings in most of the files to explain developpers what is doing what.
 - Attributed a license to the project.
 - Added a copyright text at the end of each project file.
+
+# 
+# 
+# 
+
+# 09/06/2024 - 6:45 PM UTC+2:
+
+## Back End:
+- Added a logging system that checks and logs people that have reacted.
+
+## Misc:
+- Created a Discord Community for bot news and games.
