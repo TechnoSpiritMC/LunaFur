@@ -1,7 +1,18 @@
 import random
 import uuid
 import hashlib
+import time
 
+"""
+This is a small lib file with the purpose of
+generating game IDs. It can generate UUIDs with
+a custom pattern and generation method or create
+LunaFur's own game IDs that consist of just
+a hexadecimal number (which was the time when
+the game was created) and a random number at
+the end to guarantee randomness and so that the
+generayed ID is unique.
+"""
 
 def generate_uuid(seed):
     hash_object = hashlib.md5(seed.encode())
@@ -18,6 +29,11 @@ def generateID():
     u3 = str(hex(random.randint(0, 281474976710655)))
 
     return u0[2:] + "-" + u1[2:] + "-" + u2[2:] + "-" + u3[2:]
+    
+def generateameID():
+    _1 = str(time.time())
+    _2 = str(random.randint(0, 10000))
+    return(hex(int(_1+_2)))
 
 # ======================================================================================================================
 #                             This file is a part of TechnoSpirit's LunaFur bot. If you want
