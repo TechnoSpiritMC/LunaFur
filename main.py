@@ -131,7 +131,13 @@ async def game(ctx, arg0=None, arg1=None, arg2=None, arg3=None):
                     for user in reacted_users:
                         print(user.name)
 
-                    # Continuer avec le reste du code après avoir reçu suffisamment de réactions
+                    GM = GameManager.GameManager()
+                    GM.AddGame(reacted_users)
+
+                    CGU = GameManager.CGU(reacted_users)
+                    
+                    await ctx.send("Registered games: " + CGU.get_all_ids())
+
 
                 else:
                     await user.send(embed=discord.Embed(
@@ -254,7 +260,7 @@ async def lobbys(ctx):
     consoleLog(log.info, f"@{user.name} Executed command /ping.")
 
 
-client.run("some token haha you thought you could get it as easly as that?")
+client.run("Some token")
 
 # ======================================================================================================================
 #                             This file is a part of TechnoSpirit's LunaFur bot. If you want
