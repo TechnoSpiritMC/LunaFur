@@ -38,12 +38,13 @@ class Roles:
 
     girl = "petite fille"
 
-    witch = "sorcière"
+    witch = "sorciere"
 
     """
     Nightclub is the list of all characters that wake up during the night at the same time as the werewolves. Consider
     adding your custom wolves here, or it wont work as was made originally.
     """
+
     nightclub = [werewolf, girl]
 
     # ==================================================================================================================
