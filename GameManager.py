@@ -81,8 +81,6 @@ class GameManager:
             Role = random.choice(LocalRolesList)
             LocalGame[str(Player)] = str(Role)
 
-
-
             LocalPlayers.remove(Player)
             LocalRolesList.remove(Role)
 
@@ -103,10 +101,12 @@ if __name__ == "__main__":
 
     GM = GameManager()
 
+    print(GM.GenerateRolesList(["Denis", "Martin", "Sebastian", "Joshua", "Alexis", "Nathan", "Romain"]))
+
     GM.AddGame(["Denis", "Martin", "Sebastian", "Joshua", "Alexis", "Nathan", "Romain"])
     print("Games: " + str(GM.ViewGames()))
 
-    cycler = CGU([Roles.Roles.cupid, Roles.Roles.seer, Roles.Roles.robber, Roles.Roles.nightclub, Roles.Roles.witch, ])
+    cycler = CGU([Roles.Roles.cupid, Roles.Roles.seer, Roles.Roles.robber, Roles.Roles.nightclub, Roles.Roles.witch])
 
     print(cycler.get_next('0x1A3F'))  # Retourne 1
     print(cycler.get_next('0x1A3F'))  # Retourne 1
