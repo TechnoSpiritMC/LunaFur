@@ -1,5 +1,6 @@
 import asyncio
 import datetime
+import time
 
 import discord
 from discord.ext import commands
@@ -52,12 +53,16 @@ async def game(ctx, arg0=None, arg1=None, arg2=None, arg3=None):
 
     arg1 = int(arg1)
 
+    games = {}
+
     if arg0 == "new":
         if arg1 is not None:
             if arg1 >= Roles.Roles.min:
                 if arg1 <= Roles.Roles.max:
 
                     GameID = UUIDgen.generateID()
+
+                    games[GameID] = time.time()
 
                     UserEmbed = discord.Embed(
                         title=f"Création d'une partie",
@@ -114,9 +119,11 @@ async def game(ctx, arg0=None, arg1=None, arg2=None, arg3=None):
                         game_message = await ctx.fetch_message(game_message.id)
                         reaction = discord.utils.get(game_message.reactions, emoji="✅")
                         num_reactions = reaction.count - 1  # -1 pour exclure le bot lui-même
-                        print(str(GameID) + " → " + str(num_reactions) + "/" + str(arg1) + " | " + str(round((num_reactions/arg1)*100, 1)) + "%.")
+                        _time = time.time()
+                        print(str(GameID) + " → " + str(num_reactions) + "/" + str(arg1) + " | " + str(round((num_reactions/arg1)*100, 1)) + "%. Created " + str(round((_time-games.get(GameID)), 2)) + " seconds ago")
                         if num_reactions >= arg1:
-                            await ctx.send("Objectif de réactions atteint pour la game " + GameID + "!")
+                            await ctx.send("Objectif de réactions atteint en " + str(round((_time-games.get(GameID)), 2)) + " secondes pour la game " + GameID + "!")
+                            print("Cleared the " + GameID + " game item in the list (" + str(_time-games.get(GameID)) + ")")
                             break
                         await asyncio.sleep(5)  # Attendre 5 secondes avant de vérifier à nouveau les réactions
 
@@ -143,7 +150,7 @@ async def game(ctx, arg0=None, arg1=None, arg2=None, arg3=None):
                     await user.send(embed=discord.Embed(
                         title=f"Erreur lors de la création de la partie",
                         description=f"Veuillez avoir entre 6 et 11 joueurs dans votre partie!",
-                        color=0xff1100), ephemeral=True)
+                        color=0xff1100))
 
             else:
                 await user.send(embed=discord.Embed(
@@ -260,7 +267,7 @@ async def lobbys(ctx):
     consoleLog(log.info, f"@{user.name} Executed command /ping.")
 
 
-client.run("Some token")
+client.run("A token")
 
 # ======================================================================================================================
 #                             This file is a part of TechnoSpirit's LunaFur bot. If you want
