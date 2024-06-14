@@ -45,8 +45,14 @@
 
 
 
-# 12/06/2024 - 7:30AM PM UTC+2:
+# 12/06/2024 - 7:30AM UTC+2:
 
 ## Back End:
 - Added a better logging for lobby creation, such as time from creation of the lobby.
 
+
+
+# 13/06/2024 - 7:30PM UTC+2:
+
+## Back End:
+- Started using the new ID generator.
