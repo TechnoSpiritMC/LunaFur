@@ -2,6 +2,8 @@ import random
 import Roles
 from threading import Lock
 
+import UUIDgen
+
 
 class CGU:
 
@@ -59,6 +61,27 @@ class GameManager:
         self.games = []
         self.players = []
 
+
+    def GetGame(self, GameID):
+
+        """"""
+
+        keys : list[str] = []
+        ID = -1
+
+        for i in range(len(self.games)):
+            hello = self.games[i-1]
+
+            for key in hello.keys():
+                keys.append(str(key))
+
+                if GameID == str(key):
+                    print(str(key))
+                    ID = i - 1
+
+        return keys, ID
+
+
     @staticmethod
     def GenerateRolesList(players):
         roles_dict = Roles.GenerateGame(players)
@@ -71,7 +94,7 @@ class GameManager:
         return roles_list
 
     @staticmethod
-    def CreateGame(Players):
+    def CreateGame(Players, GameID):
         LocalPlayers = Players[:]
         LocalGame = {}
         LocalRolesList = GameManager.GenerateRolesList(Players)
@@ -84,11 +107,11 @@ class GameManager:
             LocalPlayers.remove(Player)
             LocalRolesList.remove(Role)
 
-        print(LocalGame)
-        return LocalGame
+        print("[GAME] → " + str({GameID: LocalGame}))
+        return {GameID: LocalGame}
 
-    def AddGame(self, Players):
-        game = self.CreateGame(Players)
+    def AddGame(self, Players, GameID):
+        game = self.CreateGame(Players, GameID)
         self.games.append(game)
         print(">>> " + str(self.games))
 
@@ -97,28 +120,31 @@ class GameManager:
         return self.games
 
 
+    def ViewGame(self, GameID):
+
+        game = self.GetGame(GameID)
+
+        if GameID in game[0]:
+            return self.games[game[1]]
+
+
+    def SetPlayerRoles(self, GameID, Player, RolePrivateID):
+
+        PlayerLobby = self.GetGame(GameID)
+
+        lobby = self.games[PlayerLobby[1]]
+
+
 if __name__ == "__main__":
 
     GM = GameManager()
 
     print(GM.GenerateRolesList(["Denis", "Martin", "Sebastian", "Joshua", "Alexis", "Nathan", "Romain"]))
 
-    GM.AddGame(["Denis", "Martin", "Sebastian", "Joshua", "Alexis", "Nathan", "Romain"])
+    GM.AddGame(["Denis", "Martin", "Sebastian", "Joshua", "Alexis", "Nathan", "Romain"], "abcdefg")
     print("Games: " + str(GM.ViewGames()))
 
-    cycler = CGU([Roles.Roles.cupid, Roles.Roles.seer, Roles.Roles.robber, Roles.Roles.nightclub, Roles.Roles.witch])
-
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-    print(cycler.get_next('0x1A3F'))  # Retourne 1
-
+    print(GM.ViewGame("abcdefg").get("abcdefg"))
 
 # ======================================================================================================================
 #                             This file is a part of TechnoSpirit's LunaFur bot. If you want
