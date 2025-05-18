@@ -139,9 +139,9 @@ if __name__ == "__main__":
 
     GM = GameManager()
 
-    print(GM.GenerateRolesList(["Denis", "Martin", "Sebastian", "Joshua", "Alexis", "Nathan", "Romain"]))
+    print(GM.GenerateRolesList(["a", "b"]))
 
-    GM.AddGame(["Denis", "Martin", "Sebastian", "Joshua", "Alexis", "Nathan", "Romain"], "abcdefg")
+    GM.AddGame(["a", "b"], "abcdefg")
     print("Games: " + str(GM.ViewGames()))
 
     print(GM.ViewGame("abcdefg").get("abcdefg"))
